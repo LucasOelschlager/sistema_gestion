@@ -11,6 +11,11 @@ class users:
         self.last_name = last_name
         
     def create_user(self):
+        '''EN ESTA SECCION VALIDO NOMBRE DE USUARIO CON FUNCIONES DE PYTHON. NOT INPUT_USER VALIDA QUE SE HAYA INGRESADO ALGO
+            LEN(INPUT_USER) VALIDA QUE TENGA AL MENOS 3 CARACTERES, ISSPACE() VALIDA QUE NO SEA SOLO ESPACIOS 
+            Y ISALNUM() VALIDA QUE SEA ALFANUMERICO PARA QUE NO SE INGRESEN CARACTERES ESPECIALES
+        '''
+
         while True:
             input_user = input("Ingrese su nombre de usuario: ")
             if not input_user or len(input_user) < 3 or input_user.isspace() or not input_user.isalnum():
@@ -23,7 +28,7 @@ class users:
 
         while True:
             input_name = input("Ingrese su nombre: ")
-            if not input_name or len(input_name) < 3 or input_name.isspace():
+            if not input_name or len(input_name) < 3 or input_name.isspace() or not input_user.isalnum():
                 print("El nombre debe tener al menos 3 caracteres y no puede estar vacío.")
             else:
                 self.name = input_name
