@@ -3,12 +3,13 @@ from validaciones import validacionEmail, validacionContrasena
 allUsers = []
 
 class users:
-    def __init__ (self, user, password, email, name, last_name):
+    def __init__ (self, user, password, email, name, last_name, user_data):
         self.user = user
         self.password = password
         self.email = email
         self.name = name
         self.last_name = last_name
+        self.user_data = user_data
         
     def create_user(self):
         '''EN ESTA SECCION VALIDO NOMBRE DE USUARIO CON FUNCIONES DE PYTHON. NOT INPUT_USER VALIDA QUE SE HAYA INGRESADO ALGO
@@ -16,6 +17,8 @@ class users:
             Y ISALNUM() VALIDA QUE SEA ALFANUMERICO PARA QUE NO SE INGRESEN CARACTERES ESPECIALES
         '''
 
+        print("########## CREAR USUARIO ##########")
+        self.user_data = []
         while True:
             input_user = input("Ingrese su nombre de usuario: ")
             if not input_user or len(input_user) < 3 or input_user.isspace() or not input_user.isalnum():
@@ -65,6 +68,23 @@ class users:
                 input_password = input("Ingrese su contraseña: ")
                 confirm_password = input("Confirme su contraseña: ")
         print(f"Usuario creado exitosamente.\nNombre de usuario: {self.user}\nNombre: {self.name}\nApellido: {self.last_name}\nEmail: {self.email}")
+        usuario = users(self.user, input_password, self.email, self.name, self.last_name, self.user_data)
+        allUsers.append(usuario)
+        print(usuario.user, usuario.email, usuario.name, usuario.last_name)
+        from sistema import run_sistem
+        run_sistem()
+
+    def remove_user(self):
+        userRemove = input('Ingrese el usuario a eliminar: ')
+        for user in allUsers:
+            if user.user == userRemove:
+                passwordRemove = input(f'Ingrese la contraseña de {user.user}: ')
+                if user.password == passwordRemove:
+                    allUsers.remove(user)
+                    print(f'Usuario {user.user} eliminado exitosamente.')
+                    return
+               
+
 
 
         
