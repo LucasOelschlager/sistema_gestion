@@ -1,5 +1,6 @@
-from validaciones import validacionEmail, validacionContrasena
-
+from validaciones.validacionContrasena import validar_contrasena
+from validaciones.validacionEmail import validar_email
+from validaciones.validacion_nombreApellido import validar_textos
 allUsers = []
 
 class users:
@@ -21,47 +22,34 @@ class users:
         self.user_data = []
         while True:
             input_user = input("Ingrese su nombre de usuario: ")
-            if not input_user or len(input_user) < 3 or input_user.isspace() or not input_user.isalnum():
-                print("El nombre de usuario debe tener al menos 3 caracteres, no puede estar vacío y debe ser alfanumérico.")
-                
-            else:
+            if(validar_textos(input_user, 'Usuario')):
                 self.user = input_user
-                print(f"usuario {self.user}")
                 break
-
         while True:
-            input_name = input("Ingrese su nombre: ")
-            if not input_name or len(input_name) < 3 or input_name.isspace() or not input_user.isalnum():
-                print("El nombre debe tener al menos 3 caracteres y no puede estar vacío.")
-            else:
-                self.name = input_name
+            nameInput = input('Ingrese su nombre ')
+            if(validar_textos(nameInput, 'Nombre')):
+                self.name = nameInput
                 break
-
         while True:
-            input_lastName = input("Ingrese su apellido: ")
-            if not input_lastName or len(input_lastName) < 3 or input_lastName.isspace():
-                print("El apellido debe tener al menos 3 caracteres y no puede estar vacío.")
-            else:
-                self.last_name = input_lastName
+            last_nameInput = input('Ingrese su nombre ')
+            if(validar_textos(last_nameInput, 'Nombre')):
+                self.last_name = last_nameInput
                 break
+          
         '''EN ESTA SECCION VALIDO EL EMAIL CON UNA FUNCION DE VALIDACION QUE USA UN REGEX'''
-        input_email = input("Ingrese su correo electrónico: ")
+       
         while True:
-            try: 
-                if validacionEmail.validar_email(input_email):
+                input_email = input("Ingrese su correo electrónico: ")
+                if validar_email(input_email):
                     self.email = input_email
                     break
-            except ValueError:
-                print("El correo electrónico no es válido. Inténtelo de nuevo.")
-                input_email = input("Ingrese su correo electrónico: ")
-
         ''''EN ESTA SECCION VALIDO CONTRASENA CON FUNCION DE VALIDACION QUE USAR REGEX'''
       
         while True:
             try:
                 input_password = input("Ingrese su contraseña: ")
                 confirm_password = input("Confirme su contraseña: ")
-                if validacionContrasena.validar_contrasena(input_password, confirm_password):
+                if validar_contrasena(input_password, confirm_password):
                     break
             except ValueError:
                 print("La contraseña no es válida. Inténtelo de nuevo.")

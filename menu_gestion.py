@@ -6,7 +6,7 @@ def menu_gestion():
 
     if option == '1':
        from clientes import clientes
-       cliente = clientes('', '', '', '', ' ', [])
+       cliente = clientes('', '', '', '', [])
        cliente.crear_cliente()
        menu_gestion()
     elif option == '2':
